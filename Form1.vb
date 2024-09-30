@@ -1,22 +1,21 @@
 ﻿Public Class Form1
-    ' Event handler for button click
-    Private Sub btnShowTable_Click(sender As Object, e As EventArgs) Handles btnShowTable.Click
-        ' Clear the textbox before displaying the table
-        txtMultiplicationTable.Clear()
+    ' Event handler for the button click
+    Private Sub btnCheck_Click(sender As Object, e As EventArgs) Handles btnCheck.Click
+        ' Try to parse the input to a number
+        Dim number As Integer
 
-        ' Outer loop for the rows (1 to 10)
-        For i As Integer = 1 To 10
-            ' Inner loop for the columns (1 to 10)
-            For j As Integer = 1 To 10
-                ' Append the multiplication result to the textbox
-                txtMultiplicationTable.AppendText((i * j).ToString() & vbTab)  ' Tab space between columns
-            Next
-            ' Move to the next line after each row
-            txtMultiplicationTable.AppendText(vbCrLf)
-        Next
-    End Sub
-
-    Private Sub txtMultiplicationTable_TextChanged(sender As Object, e As EventArgs) Handles txtMultiplicationTable.TextChanged
-
+        If Integer.TryParse(txtNumber.Text, number) Then
+            ' Check if the number is positive, negative, or zero
+            If number > 0 Then
+                lblResult.Text = "Positive Number"
+            ElseIf number < 0 Then
+                lblResult.Text = "Negative Number"
+            Else
+                lblResult.Text = "Zero"
+            End If
+        Else
+            ' Display an error message if the input is not a valid number
+            lblResult.Text = "Please enter a valid number."
+        End If
     End Sub
 End Class
