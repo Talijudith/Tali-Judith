@@ -1,12 +1,19 @@
 ﻿Public Class Form1
-    ' Event handler for the button click
-    Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        ' Retrieve input from the textboxes
-        Dim userName As String = txtName.Text
-        Dim userAge As String = txtAge.Text
-        Dim userColor As String = txtColor.Text
+    ' Event handler for button click
+    Private Sub btnCountDown_Click(sender As Object, e As EventArgs) Handles btnCountDown.Click
+        ' Get the number from the textbox
+        Dim number As Integer
 
-        ' Display a message box with the entered information
-        MessageBox.Show("Hello " & userName & "! You are " & userAge & " years old and your favorite color is " & userColor & ".", "User Information")
+        If Integer.TryParse(txtNumber.Text, number) Then
+            lblCountdownResult.Text = ""  ' Clear previous result
+
+            ' While loop to count down from the given number to zero
+            While number >= 0
+                lblCountdownResult.Text &= number.ToString() & " "  ' Append each number to the label with a space
+                number -= 1
+            End While
+        Else
+            lblCountdownResult.Text = "Please enter a valid number."  ' Show error if input is not a valid number
+        End If
     End Sub
 End Class
